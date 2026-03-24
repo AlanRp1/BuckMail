@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-blue: #00eaff;
+  --color-neon-purple: #7a00ff;
+  --color-dark-bg: #0a0a0a;
+  --color-dark-card: #1a1a1a;
+
+  --font-orbitron: "Orbitron", sans-serif;
+
+  --shadow-neon-blue: 0 0 10px #00eaff, 0 0 20px #00eaff;
+  --shadow-neon-purple: 0 0 10px #7a00ff, 0 0 20px #7a00ff;
+
+  @keyframes neon-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-dark-bg font-sans;
+  }
+}
+
+@layer components {
+  .neon-border-blue {
+    @apply border border-neon-blue shadow-neon-blue;
+  }
+  .neon-border-purple {
+    @apply border border-neon-purple shadow-neon-purple;
+  }
+  .neon-text-blue {
+    @apply text-neon-blue;
+    text-shadow: 0 0 5px #00eaff;
+  }
+  .neon-text-purple {
+    @apply text-neon-purple;
+    text-shadow: 0 0 5px #7a00ff;
+  }
+  .cyber-button {
+    @apply relative overflow-hidden transition-all duration-300 font-orbitron uppercase tracking-widest px-6 py-3 rounded;
+  }
+  .cyber-card {
+    @apply bg-dark-card border border-white/10 rounded-lg p-6 backdrop-blur-sm;
+  }
+}
+
+.animate-neon-pulse {
+  animation: neon-pulse 2s infinite;
+}
