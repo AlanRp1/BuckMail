@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 
 // Connect to Socket.io backend
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_API_URL || 'https://gerador-de-gmail-seven.vercel.app';
 const socket = io(API_URL);
 
 const App = () => {
@@ -102,7 +102,10 @@ const App = () => {
       setSelectedMessage(null);
       socket.emit('join-inbox', newAddress);
     } catch (err) {
-      setError(err.response?.data?.error || 'Falha ao gerar e-mail');
+      console.error('Erro ao gerar:', err);
+      // Se der erro, tenta de novo automaticamente com um pequeno atraso
+      setTimeout(() => generateEmail(), 2000);
+      setError('Tentando conectar ao servidor...');
     } finally {
       setLoading(false);
     }

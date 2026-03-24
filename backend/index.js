@@ -34,8 +34,8 @@ const apiLimiter = rateLimit({
 
 const generateLimiter = rateLimit({
   windowMs: 24 * 60 * 60 * 1000, // 24 hours
-  max: 100, // Increased to 100 for better user experience
-  message: { error: 'Limite de geração atingido. Você só pode criar 100 e-mails por dia.' }
+  max: 1000, // Limite muito alto para nunca dar erro
+  message: { error: 'Limite de geração atingido.' }
 });
 
 const { MongoMemoryServer } = require('mongodb-memory-server');
